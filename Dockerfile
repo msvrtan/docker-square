@@ -40,6 +40,7 @@ RUN apt-get install -y \
 
 # Install additional tools
 RUN apt-get install -y \
+        ant \
         git \
         curl \
         joe
