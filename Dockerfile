@@ -68,6 +68,12 @@ RUN curl -s http://getcomposer.org/installer | php \
 # Source the bash
 RUN . ~/.bashrc
 
+#Delete enabled Nginx sites
+RUN rm -rf /etc/nginx/sites-enabled/*
+
+#Delete everything from /var/www/ folder
+RUN rm -rf /var/www/*
+
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
