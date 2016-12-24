@@ -14,7 +14,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 # 
 RUN apt-get update 
 
-# Install PHP-CLI 7, some PHP extentions and some useful Tools with APT
+# Install PHP 7.1, some PHP extentions and some useful Tools with APT
 RUN apt-get install -y \
         acl \
         mysql-client \
@@ -44,6 +44,11 @@ RUN apt-get install -y \
         git \
         curl \
         joe
+
+#Set up PHP7-FPM folder
+RUN mkdir /run/php
+RUN chmod 777 /run/php/
+
 
 # Add a symbolic link for Node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
