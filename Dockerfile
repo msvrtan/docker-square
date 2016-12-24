@@ -62,8 +62,7 @@ RUN echo 'alias cc="bin/console cache:clear"' >> ~/.bashrc
 
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/ \
-    && echo "alias composer='/usr/local/bin/composer.phar'" >> ~/.bashrc
+    && mv composer.phar /usr/local/bin/composer 
 
 # Source the bash
 RUN . ~/.bashrc
