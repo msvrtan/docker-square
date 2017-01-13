@@ -11,6 +11,9 @@ ENV TERM xterm
 
 #add repo with newest PHP versions
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+#add yarn repo
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv D101F7899D41F3C3 
+RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list 
 # 
 RUN apt-get update 
 
@@ -49,6 +52,8 @@ RUN apt-get install -y \
 RUN mkdir /run/php
 RUN chmod 777 /run/php/
 
+#Install yarn 
+RUN apt-get install -y yarn 
 
 # Add a symbolic link for Node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
