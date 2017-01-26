@@ -55,6 +55,7 @@ RUN apt-get install -y \
         git \
         curl \
         python-pip \
+        zip \
         joe
         
 RUN pip install awscli        
