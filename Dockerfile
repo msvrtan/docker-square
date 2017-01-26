@@ -54,7 +54,10 @@ RUN apt-get install -y \
         ant \
         git \
         curl \
+        python-pip \
         joe
+        
+RUN pip install awscli        
 
 #Set up PHP7-FPM folder
 RUN mkdir /run/php
