@@ -58,6 +58,17 @@ RUN apt-get install -y \
         zip \
         joe
         
+RUN apt-get install -y wget unzip libmcrypt-dev libpng-dev libjpeg-dev \
+                       ghostscript zbar-tools dmtx-utils poppler-utils \
+                       tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9 && \
+    docker-php-ext-configure gd --with-jpeg-dir=/usr/lib64 && \
+    docker-php-ext-install pdo_mysql mbstring mcrypt gd bcmath && \
+    curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python2.7 get-pip.py && \
+    pip install awscli
+
+
+
 RUN pip install awscli        
 
 #Set up PHP7-FPM folder
