@@ -61,7 +61,7 @@ RUN apt-get install -y \
 RUN apt-get install -y \
         wget unzip libmcrypt-dev libpng-dev libjpeg-dev \
         ghostscript zbar-tools dmtx-utils poppler-utils \
-        tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9  gcj-jdk
+        tesseract-ocr qpdf build-essential g++  gcj-jdk
 
 
 RUN mkdir -p /install && cd /install && wget http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk-2.02-src.zip && \
