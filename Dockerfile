@@ -60,13 +60,14 @@ RUN apt-get install -y \
         
 RUN apt-get install -y wget unzip libmcrypt-dev libpng-dev libjpeg-dev \
                        ghostscript zbar-tools dmtx-utils poppler-utils \
-                       tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9 && \
-    docker-php-ext-configure gd --with-jpeg-dir=/usr/lib64 && \
-    docker-php-ext-install pdo_mysql mbstring mcrypt gd bcmath && \
-    curl -O https://bootstrap.pypa.io/get-pip.py && \
-    python2.7 get-pip.py && \
-    pip install awscli
+                       tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9 \
 
+RUN mkdir -p /install && cd /install && wget http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk-2.02-src.zip && \
+    unzip pdftk-2.02-src.zip && \
+    sed -i 's/VERSUFF=-4.6/VERSUFF=-4.9/g' pdftk-2.02-dist/pdftk/Makefile.Debian && \
+    cd pdftk-2.02-dist/pdftk && \
+    make -f Makefile.Debian && \
+    sudo make -f Makefile.Debian install
 
 
 RUN pip install awscli        
@@ -102,6 +103,6 @@ RUN rm -rf /etc/nginx/sites-enabled/*
 RUN rm -rf /var/www/*
 
 # Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /install 
 
 WORKDIR /var/www
