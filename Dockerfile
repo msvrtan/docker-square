@@ -58,10 +58,17 @@ RUN apt-get install -y \
         zip \
         joe
         
-RUN apt-get install -y wget unzip libmcrypt-dev libpng-dev libjpeg-dev \
-                       ghostscript zbar-tools dmtx-utils poppler-utils \
-                       tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9 \
+RUN apt-get install -y \
+        wget unzip libmcrypt-dev libpng-dev libjpeg-dev \
+        ghostscript zbar-tools dmtx-utils poppler-utils \
+        tesseract-ocr qpdf build-essential gcj-4.9-jdk g++-4.9 \
 
+RUN mkdir -p /install && cd /install && wget http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk-2.02-src.zip && \
+    unzip pdftk-2.02-src.zip && \
+    sed -i 's/VERSUFF=-4.6/VERSUFF=-4.9/g' pdftk-2.02-dist/pdftk/Makefile.Debian && \
+    cd pdftk-2.02-dist/pdftk && \
+    make -f Makefile.Debian && \
+    sudo make -f Makefile.Debian install
 
 
 RUN pip install awscli        
