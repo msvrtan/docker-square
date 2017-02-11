@@ -47,6 +47,7 @@ RUN apt-get install -y \
         php-memcached \
         php-mongodb \
         php-redis \
+        php-xdebug \
         php-zip
 
 # Install additional tools
