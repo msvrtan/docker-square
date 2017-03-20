@@ -57,6 +57,7 @@ RUN apt-get install -y \
         curl \
         python-pip \
         zip \
+        wget \
         joe
         
 RUN pip install awscli        
@@ -81,6 +82,12 @@ RUN echo 'alias cc="bin/console cache:clear"' >> ~/.bashrc
 # Install Composer
 RUN curl -s http://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer 
+
+# Add dockerize
+ENV DOCKERIZE_VERSION v0.3.0
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Source the bash
 RUN . ~/.bashrc
