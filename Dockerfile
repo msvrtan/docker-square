@@ -40,6 +40,7 @@ RUN apt-get install -y \
         php7.1-mbstring \
         php7.1-mcrypt \
         php7.1-mysql \
+        php7.1-pgsql \
         php7.1-xml \
         php7.1-zip \
         php7.1-soap \
